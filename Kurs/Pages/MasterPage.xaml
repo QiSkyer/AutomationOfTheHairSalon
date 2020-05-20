@@ -11,7 +11,8 @@
     <Grid >
 
         <Canvas Background="Azure" >
-            <DataGrid x:Name="Dg1" Canvas.Left="187" Canvas.Top="66" AutoGenerateColumns="False" Height="266" Width="473" >
+            <Image  Source="/Kurs;component/interfaceTable_00001.png"  Stretch="Fill" Height="445" Canvas.Top="-33" Width="804"/>
+            <DataGrid x:Name="Dg1" Canvas.Left="148" Canvas.Top="32" AutoGenerateColumns="False" Height="300" Width="598" IsReadOnly="True" >
                 <DataGrid.Columns>
 
                     <DataGridTextColumn Header="№" Binding="{Binding
@@ -25,13 +26,19 @@ Path=Name}" Width="100" />
                     <DataGridTextColumn Header="Отчество" Binding="{Binding
 Path=MiddleName}" Width="100" />
                     <DataGridTextColumn Header="Услуги" Binding="{Binding
-Path=ServiceName}" Width="140" />
+Path=ServiceName}" Width="200" />
+                    <DataGridTextColumn Header="Время" Binding="{Binding
+Path=TimePriem}" Width="60" />
 
 
                 </DataGrid.Columns>
             </DataGrid>
-            <Button Canvas.Left="94" Canvas.Top="222" Width="71" Click="Button_Click">Обновить</Button>
-            <Button Canvas.Left="94" Canvas.Top="262" Width="72">Выход</Button>
+            <Button x:Name="ResBu" Canvas.Left="46" Canvas.Top="218" Width="71" Click="ResBu_Click" >Обновить</Button>
+            <Button x:Name="ExitBu" Canvas.Left="46" Canvas.Top="253" Width="72" Click="ExitBu_Click">Выход</Button>
+
         </Canvas>
+        <Label x:Name="MasterLabel" Content="" HorizontalAlignment="Left" Margin="327,3,0,0" VerticalAlignment="Top" Height="32" Width="225" HorizontalContentAlignment="Center"/>
+
+
     </Grid>
 </Page>

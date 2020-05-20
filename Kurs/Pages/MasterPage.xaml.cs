@@ -27,22 +27,36 @@ namespace Kurs.Pages
         public MasterPage()
         {
             InitializeComponent();
-            using (SqlConnection con = new SqlConnection(connectionString))
-            {
-                string CmdString = "SELECT [idPriem],[Surname],[Name],[MiddleName],[ServiceName] FROM[Kurs].[dbo].[ForMasters]";
-                SqlCommand cmd = new SqlCommand(CmdString, con);
-                SqlDataAdapter sda = new SqlDataAdapter(CmdString, connectionString);
-                DataTable dt = new DataTable("Emplo");
-                sda.Fill(dt);
-                Dg1.ItemsSource = dt.DefaultView;
-
-
-            }
+            MasterPageLo();
+            MasterLabel.Content = DataStore.MasterFam + " " + DataStore.MasterName + " " + DataStore.MasterOtch;
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private void MasterPageLo()
         {
+            connectionString = ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString;
+            using (SqlConnection con = new SqlConnection(connectionString))
+            {
+                string CmdString = $"SELECT [idPriem],[Surname],[Name],[MiddleName],[ServiceName],[TimePriem] FROM [Kurs].[dbo].[ForMasters] WHERE [loginMaster] = '{DataStore.Userlogin}'";
 
+                SqlCommand cmd = new SqlCommand(CmdString, con);
+                SqlDataAdapter sda = new SqlDataAdapter(CmdString, connectionString);
+                DataTable dt = new DataTable("Dg1");
+                sda.Fill(dt);
+                Dg1.ItemsSource = dt.DefaultView;
+            }
+        }
+      
+
+        private void ExitBu_Click(object sender, RoutedEventArgs e)
+        {
+            NavigationService.GoBack();
+            NavigationService.RemoveBackEntry();
+        }
+
+        private void ResBu_Click(object sender, RoutedEventArgs e)
+        {
+            Dg1.ItemsSource = null;
+            MasterPageLo();
         }
     }
 }

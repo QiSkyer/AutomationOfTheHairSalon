@@ -54,20 +54,21 @@ namespace Kurs.Pages
         private void Login(object sender, RoutedEventArgs e)
         {
 
-            DataStore.Userid = "dsa";
+            
 
-            string query = "SELECT loginMaster, PasswordMaster FROM dbo.Masters Where loginMaster = @login AND PasswordMaster = @password";
+            string query = "SELECT [MasterSurName],[MasterName],[MasterMName], loginMaster, PasswordMaster FROM dbo.Masters Where loginMaster = @login AND PasswordMaster = @password";
 
 
             SqlConnection connection = new SqlConnection(connectionString);
             SqlCommand command = new SqlCommand(query, connection);
             command.Parameters.AddWithValue("@login", LoginBox.Text);
-            command.Parameters.AddWithValue("@password", PassBox.Text);
+            DataStore.Userlogin = LoginBox.Text;
+            command.Parameters.AddWithValue("@password", PassBox.Password);
             connection.Open();
             SqlDataReader reader = command.ExecuteReader();
 
 
-            if (LoginBox.Text == "admin" && PassBox.Text == "admin")
+            if (LoginBox.Text == "admin" && PassBox.Password == "admin")
             {
                 NavigationService.Navigate(new AdminPage());
             }
@@ -75,8 +76,13 @@ namespace Kurs.Pages
             {
                 while (reader.Read())
                 {
+                    DataStore.MasterFam = reader[0].ToString();
+                    DataStore.MasterName = reader[1].ToString();
+                    DataStore.MasterOtch = reader[2].ToString();
+                    
                     NavigationService.Navigate(new MasterPage());
                      return;
+
                 }
                 MessageBox.Show("Ошибка в логине или пароле");
             }

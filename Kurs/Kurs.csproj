@@ -147,5 +147,8 @@
   <ItemGroup>
     <Resource Include="Без названия 2_00001_00001.png" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="interfaceTable_00001.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

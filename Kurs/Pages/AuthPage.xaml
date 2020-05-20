@@ -13,8 +13,9 @@
         <TextBox x:Name="LoginBox" Canvas.Left="338" Canvas.Top="147" Width="117" Height="21"/>
         <Label Content="Пароль" FontSize="14" HorizontalAlignment="Left" VerticalAlignment="Center" Padding="5,0" Foreground="Black"  Width="64" Panel.ZIndex="1" Height="24" Canvas.Left="274" Canvas.Top="184"/>
         <Label Content="Логин" FontSize="14" HorizontalAlignment="Left" VerticalAlignment="Center" Padding="5,0" Foreground="Black"  Width="64" Panel.ZIndex="1" Height="25" Canvas.Left="274" Canvas.Top="145"/>
-        <TextBox x:Name="PassBox" Canvas.Left="338" Canvas.Top="184" Width="117" Height="20"/>
+        <PasswordBox x:Name="PassBox" Canvas.Left="338" Canvas.Top="184" Width="117" Height="20"/>
         <Button Content="Войти" Background="White" Canvas.Left="348" Canvas.Top="223" Width="80" Height="22" Click="Login"/>
+       
 
     </Canvas>
 </Page>
