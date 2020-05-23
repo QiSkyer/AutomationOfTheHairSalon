@@ -9,10 +9,29 @@
       Title="Registration2">
 
     <Grid Background="Azure" RenderTransformOrigin="0.474,0.477">
-        <Label Content="Выберите мастера" Margin="222,90,466,334.6"/>
-        <Button Content="Далее" Click="Button_Click" Margin="451,311,253,118.6"/>
-        <Label Content="Выберите дату" Margin="478,90,210,334.6"/>
-        <Calendar HorizontalAlignment="Left" Margin="451,124,0,0" VerticalAlignment="Top" Height="166"/>
-        <DataGrid Margin="126,124,377,118.6"></DataGrid>
+        <Canvas>
+            <Image Source="/Kurs;component/interfaceTable3_00001.png" Stretch="Fill" Canvas.Left="34" Height="450" Width="756"/>
+            <Label Content="Выберите мастера" Canvas.Left="243" Canvas.Top="80"/>
+            <Button Content="Далее" Click="Button_Click" Height="25" Canvas.Left="136" Canvas.Top="278" Width="88"/>
+            <Label Content="Выберите дату" Canvas.Left="521" Canvas.Top="98"/>
+            <Calendar x:Name="Kalendar" HorizontalAlignment="Left" VerticalAlignment="Top" Height="165" Canvas.Left="476" Canvas.Top="123" Width="186"/>
+            <DataGrid x:Name="Gr1" Height="175" Canvas.Left="107" Canvas.Top="103" Width="357" AutoGenerateColumns="False" IsReadOnly="True" RenderTransformOrigin="0.5,0.5">
+                <DataGrid.Columns>
+
+                    <DataGridTextColumn Header="№" Binding="{Binding
+Path=idMaster}" Width="30" />
+
+                    <DataGridTextColumn Header="Фамилия" Binding="{Binding
+Path=MasterSurName}" Width="110" />
+
+                    <DataGridTextColumn Header="Имя" Binding="{Binding
+Path=MasterName}" Width="105" />
+                    <DataGridTextColumn Header="Отчество" Binding="{Binding
+Path=MasterMName}" Width="110" />
+
+                </DataGrid.Columns>
+            </DataGrid>
+            <Button x:Name="Time" Content="Выбрать время" Canvas.Left="481" Canvas.Top="288" Width="178" Click="Time_Click"/>
+        </Canvas>
     </Grid>
 </Page>
