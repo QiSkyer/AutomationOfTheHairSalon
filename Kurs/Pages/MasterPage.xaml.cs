@@ -36,7 +36,7 @@ namespace Kurs.Pages
             connectionString = ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString;
             using (SqlConnection con = new SqlConnection(connectionString))
             {
-                string CmdString = $"SELECT [idPriem],[Surname],[Name],[MiddleName],[ServiceName],[TimePriem] FROM [Kurs].[dbo].[ForMasters] WHERE [loginMaster] = '{DataStore.Userlogin}'";
+                string CmdString = $"SELECT [idPriem],[Surname],[Name],[MiddleName],[ServiceName],[TimePriem] FROM [Kurs].[dbo].[ForMasters] WHERE [loginMaster] = '{DataStore.Userlogin}' AND [Date] = '{DateTime.Now.ToString("yyyy-MM-dd")}'";
 
                 SqlCommand cmd = new SqlCommand(CmdString, con);
                 SqlDataAdapter sda = new SqlDataAdapter(CmdString, connectionString);

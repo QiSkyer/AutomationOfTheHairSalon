@@ -21,30 +21,32 @@ namespace Kurs
     /// Логика взаимодействия для Time.xaml
     /// </summary>
     /// 
-
-    
         
     public partial class Time : Window
     {
+
+        List<int> Bans = new List<int>();
         List<Button> buttons = new List<Button>();
-       private string connectionString;
+        List<string[]> CloseTime = new List<string[]>();
+        private string connectionString;
         public Time()
         {
+
             int i = 0;
-            int top =  00;
-            int left = 10;
+            int ii = 0;
+            int Top =  19;
+            int left = 14;
             int beginRaspHour;
             int Rasp;
             int RaspMin;
             int endRasp;
+            
 
             InitializeComponent();
-
             connectionString = ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString;
             using (SqlConnection con = new SqlConnection(connectionString))
             {
-               
-                string CmdString = "SELECT [idRaspisaniya],[idMaster],[TimeBegin],[TimeEnd],[Date] FROM [Kurs].[dbo].[RaspisanieMastera]";
+                string CmdString = $"SELECT [idRaspisaniya],[idMaster],[TimeBegin],[TimeEnd],[Date] FROM [Kurs].[dbo].[RaspisanieMastera] where idmaster = {Reg2Data.masterid}";
                 SqlConnection connection = new SqlConnection(connectionString);
                 SqlCommand command = new SqlCommand(CmdString, connection);
                 connection.Open();
@@ -53,22 +55,63 @@ namespace Kurs
                     beginRaspHour = Convert.ToInt32(reader[2]);
                     endRasp = Convert.ToInt32(reader[3]);
                 reader.Close();
-              
-            }
-            
 
+                string CmdString1 = $"SELECT [idMaster],[idService],[TimePriem],[Date] FROM [Kurs].[dbo].[ForTimes] Where idmaster = {Reg2Data.masterid} AND idService= {Reg1Data.ServiceId} AND [Date] = '{Reg2Data.Date}'";
+                SqlConnection connection1 = new SqlConnection(connectionString);
+                SqlCommand command1 = new SqlCommand(CmdString1, connection);
+                SqlDataReader reader1 = command1.ExecuteReader();
+                while (reader1.Read())
+                {
+                    CloseTime.Add((reader1[2]).ToString().Split(new char[] { ':' }, StringSplitOptions.RemoveEmptyEntries));
+                }
+                reader1.Close();
+
+
+            }
+
+
+
+            //генерация кнопок времени
+            
             Rasp = beginRaspHour;
             RaspMin =0;
-            for (i = 0; i<11; i++)
+            i = 0;
+            while (Rasp < endRasp)
             {
-                left =left + 40;
+                if (left >= 710)
+                {
+                    Top += 23;
+                    left = 54;
+                }
+                else
+                {
+                    left = left + 40;
+                }
+                RaspMin += 15;
                 if (RaspMin == 60)
                 {
                     RaspMin = 0;
                     Rasp += 1;
-                }
-                RaspMin += 15;
+                }    
+                
                 Button Buu = new Button();
+                Buu.Tag = i;
+
+                //MessageBox.Show(CloseTime.Count.ToString());
+                for (ii=0; ii< CloseTime.Count; ++ii)
+                {
+                    if (Rasp == Convert.ToInt32(CloseTime[ii][0]) && RaspMin == Convert.ToInt32(CloseTime[ii][1]))
+                    {
+                        MessageBox.Show(Buu.Tag.ToString());
+                        Bans.Add(i);
+                        Buu.Background = Brushes.Gray;
+                    }
+                    else
+                    {
+                        Buu.Click += new RoutedEventHandler(Buu_Click);
+                    }
+                }
+
                 if (i == 0)
                 {
                     Buu.Content = beginRaspHour + ":" + RaspMin ;
@@ -77,15 +120,24 @@ namespace Kurs
                 {
                     Buu.Content =  Rasp+ ":" + RaspMin;
                 }
-                Canvas.SetTop(Buu,  top);
+                Canvas.SetTop(Buu,  Top);
                 Canvas.SetLeft(Buu,  left);
                 buttons.Add(Buu);
                 Canvas1.Children.Add(Buu);
-
+               
+                i++;
             }
-            
         }
 
-      
+        private void Buu_Click(object sender, EventArgs e)
+        {
+            string sr = ((Button)sender).Content.ToString();
+            Result.Content = sr;
+        }
+
+        private void Exit_Click(object sender, RoutedEventArgs e)
+        {
+            Close();
+        }
     }
 }

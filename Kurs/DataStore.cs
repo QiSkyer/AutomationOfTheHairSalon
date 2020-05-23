@@ -24,5 +24,6 @@ namespace Kurs
     class Reg2Data
     {
         public static string Date;
+        public static string masterid;
     }
 }

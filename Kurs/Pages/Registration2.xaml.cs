@@ -24,6 +24,7 @@ namespace Kurs.Pages
     public partial class Registration2 : Page
     {
         List<string> Masterid = new List<string>();
+      
         private string connectionString;
 
         public Registration2()
@@ -37,7 +38,7 @@ namespace Kurs.Pages
             connectionString = ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString;
             using (SqlConnection con = new SqlConnection(connectionString))
             {
-                string CmdString = "SELECT [idMaster],[MasterSurName],[MasterName],[MasterMName] FROM [Kurs].[dbo].[Masters]";
+                string CmdString = $"SELECT [idMaster],[MasterSurName],[MasterName],[MasterMName] FROM[Kurs].[dbo].[ForReg2] where [idService] = {Reg1Data.ServiceId} ";
 
                 SqlCommand cmd = new SqlCommand(CmdString, con);
                 SqlDataAdapter sda = new SqlDataAdapter(CmdString, connectionString);
@@ -63,13 +64,17 @@ namespace Kurs.Pages
         private void Time_Click(object sender, RoutedEventArgs e)
         {
           Reg2Data.Date = Kalendar.SelectedDate.ToString();
-            if (Reg2Data.Date == "")
+
+            int sc2 = Gr1.SelectedIndex;
+
+            if (Reg2Data.Date == "" || sc2 == -1)
             {
-                MessageBox.Show("Выберите дату");
+                MessageBox.Show("Выберите дату и мастера");
             }
             else
             {
-             //   MessageBox.Show(Reg2Data.Date);
+                   
+                Reg2Data.masterid = Masterid[sc2].ToString();
                 Time T = new Time();
                 T.Show();
             }
