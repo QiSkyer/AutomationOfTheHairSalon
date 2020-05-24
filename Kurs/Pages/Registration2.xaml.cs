@@ -24,7 +24,9 @@ namespace Kurs.Pages
     public partial class Registration2 : Page
     {
         List<string> Masterid = new List<string>();
-      
+        List<string> Master = new List<string>();
+        int sc2;
+
         private string connectionString;
 
         public Registration2()
@@ -47,10 +49,13 @@ namespace Kurs.Pages
                 Gr1.ItemsSource = dt.DefaultView;
                 con.Open();
                 SqlDataReader reader = cmd.ExecuteReader();
+                int i=0;
                 while (reader.Read())
                 {
                    Masterid.Add(reader[0].ToString());
-
+                    Master.Add(reader[1].ToString());
+                    Master[i] += " " + reader[2].ToString() + " " + reader[3].ToString();
+                    i++;
                 }
                 reader.Close();
             }
@@ -58,14 +63,28 @@ namespace Kurs.Pages
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-
+            if ( Reg2Data.Time == "" || Reg2Data.Date == "" || sc2 == -1)
+            {
+                MessageBox.Show("Вы не выбрали Мастера/Дату/Время");
+            }
+            else
+            {
+                NavigationService.Navigate(new Final());
+            }
         }
 
         private void Time_Click(object sender, RoutedEventArgs e)
         {
-          Reg2Data.Date = Kalendar.SelectedDate.ToString();
+            if (DateTime.Now > Kalendar.SelectedDate)
+            {
+                Kalendar.SelectedDate = DateTime.Now;
+            }
+            else
+            {
+                Reg2Data.Date = Kalendar.SelectedDate.ToString();
+            }
 
-            int sc2 = Gr1.SelectedIndex;
+            sc2 = Gr1.SelectedIndex;
 
             if (Reg2Data.Date == "" || sc2 == -1)
             {
@@ -75,6 +94,7 @@ namespace Kurs.Pages
             {
                    
                 Reg2Data.masterid = Masterid[sc2].ToString();
+                Reg2Data.master = Master[sc2];
                 Time T = new Time();
                 T.Show();
             }

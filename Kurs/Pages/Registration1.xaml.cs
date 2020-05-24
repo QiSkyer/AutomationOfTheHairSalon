@@ -24,6 +24,7 @@ namespace Kurs.Pages
     public partial class Registration1 : Page
     {
         List<string> Serviceid = new List<string>();
+        List<string> Service = new List<string>();
         private string connectionString;
 
         public Registration1()
@@ -50,7 +51,7 @@ namespace Kurs.Pages
                 while (reader.Read())
                 {
                     Serviceid.Add(reader[0].ToString());
-
+                    Service.Add(reader[1].ToString());
                 }
                 reader.Close();
             }
@@ -59,6 +60,7 @@ namespace Kurs.Pages
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             int sc2 = Gr1.SelectedIndex;
+            Reg2Data.Time = "";
             if (NameBox.Text == "")
             {
                 MessageBox.Show("Вы не ввели Имя");
@@ -76,6 +78,7 @@ namespace Kurs.Pages
                     Reg1Data.ClientOtchstvo = OtchestvoBox.Text;
                     Reg1Data.ClientPhone = PhoneBox.Text;
                     Reg1Data.ServiceId = sc2.ToString();
+                    Reg1Data.Service = Service[sc2];
                     NavigationService.Navigate(new Registration2());
                 }
             }

@@ -20,10 +20,13 @@ namespace Kurs
         public static string ClientOtchstvo;
         public static string ClientPhone;
         public static string ServiceId;
+        public static string Service;
     }
     class Reg2Data
     {
         public static string Date;
         public static string masterid;
+        public static string master;
+        public static string Time;
     }
 }

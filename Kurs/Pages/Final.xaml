@@ -1,0 +1,41 @@
+﻿<Page x:Class="Kurs.Pages.Final"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:Kurs.Pages"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="Final">
+
+    <Grid >
+
+        <Canvas Background="Azure" >
+            <Image  Source="/Kurs;component/interfaceTable_00001.png"  Stretch="Fill" Height="445" Canvas.Top="-33" Width="804"/>
+            <Button x:Name="ResBu" Canvas.Left="46" Canvas.Top="218" Width="71" IsEnabled="False" >Распечатать</Button>
+            <Button x:Name="ExitBu" Canvas.Left="46" Canvas.Top="253" Width="72" Click="ExitBu_Click">Выход</Button>
+            <Image Height="398" Canvas.Left="94" Source="/Kurs;component/Fill_00001_00001.png" Stretch="Fill" Canvas.Top="-21" Width="706"/>
+            <TextBlock x:Name="_FIO" Canvas.Left="309" TextWrapping="Wrap" Text="ФИО" Canvas.Top="51" Width="246" TextAlignment="Center"/>
+            <TextBlock x:Name="_Phone" Canvas.Left="265" TextWrapping="Wrap" Text="TextBlock" Canvas.Top="86" Width="322"/>
+            <Label  Content="Ваш телефон:" Canvas.Left="175" Canvas.Top="81"/>
+            <Label Content="Услуга:" Canvas.Left="212" Canvas.Top="105"/>
+            <TextBlock x:Name="_Service" Canvas.Left="265" TextWrapping="Wrap" Text="TextBlock" Canvas.Top="110" Width="322"/>
+            <Label Content="" Canvas.Left="207" Canvas.Top="131"/>
+            <Label Content="Мастер:" Canvas.Left="207" Canvas.Top="130"/>
+            <Label Content="Дата:" Canvas.Left="222" Canvas.Top="154"/>
+            <Label Content="Время:" Canvas.Left="212" Canvas.Top="179"/>
+            <Label Content="Стоимость:" Canvas.Left="190" Canvas.Top="205"/>
+            <TextBlock x:Name="_Master" Canvas.Left="265" TextWrapping="Wrap" Text="TextBlock" Canvas.Top="134" Width="322"/>
+            <TextBlock x:Name="_Date" Canvas.Left="265" TextWrapping="Wrap" Text="TextBlock" Canvas.Top="158" Width="322"/>
+            <TextBlock x:Name="_Time" Canvas.Left="265" TextWrapping="Wrap" Text="TextBlock" Canvas.Top="184" Width="322"/>
+            <TextBlock x:Name="_Cost" Canvas.Left="265" TextWrapping="Wrap" Text="TextBlock" Canvas.Top="210" Width="322"/>
+
+        </Canvas>
+        <Label x:Name="MasterLabel" HorizontalAlignment="Left" Content="Вы зарегистрированы!" Margin="327,3,0,0" VerticalAlignment="Top" Height="32" Width="225" HorizontalContentAlignment="Center">
+
+        </Label>
+
+
+
+    </Grid>
+</Page>

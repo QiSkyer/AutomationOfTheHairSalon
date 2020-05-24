@@ -56,6 +56,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Pages\Final.xaml.cs">
+      <DependentUpon>Final.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Pages\Time.xaml.cs">
       <DependentUpon>Time.xaml</DependentUpon>
     </Compile>
@@ -77,6 +80,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Pages\AuthPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\Final.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -165,6 +172,9 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Time_00001_00001.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Fill_00001_00001.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -5,13 +5,13 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Kurs"
         mc:Ignorable="d"
-        Title="Time" Height="156.5" Width="826.5" ResizeMode="NoResize">
+        Title="Time" Height="146.9" Width="826.5" ResizeMode="NoResize">
     <Grid>
         <Canvas x:Name="Canvas1" Background="Azure">
-            <Image Height="160" Source="/Kurs;component/Time_00001_00001.png" Stretch="Fill" Width="793" Canvas.Left="17" Canvas.Top="-22"/>
-            <Label Content="Выбранное время:" Canvas.Left="312" Canvas.Top="92"/>
-            <Label x:Name="Result" Content="" Canvas.Left="420" Canvas.Top="92" Width="38"/>
-            <Button x:Name="Exit" Content="OK" Canvas.Left="463" Canvas.Top="95" Width="75" Click="Exit_Click"/>
+            <Image Height="140" Source="/Kurs;component/Time_00001_00001.png" Stretch="Fill" Width="793" Canvas.Left="17" Canvas.Top="-22"/>
+            <Label Content="Выбранное время:" Canvas.Left="311" Canvas.Top="80"/>
+            <Label x:Name="Result" Content="" Canvas.Left="419" Canvas.Top="80" Width="38"/>
+            <Button x:Name="Exit" Content="OK" Canvas.Left="462" Canvas.Top="83" Width="75" Click="Exit_Click"/>
         </Canvas>
     </Grid>
 </Window>
