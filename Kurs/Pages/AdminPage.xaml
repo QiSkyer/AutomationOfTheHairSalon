@@ -20,10 +20,10 @@
         <Image Margin="269,21.6,295,10" Grid.Row="1" Source="/Kurs;component/Без названия 2_00001_00001.png" Stretch="Fill"/>
         <Canvas Margin="285,0.6,318,57" Grid.Row="1">
             <Label Content="Меню администратора:" Canvas.Left="32" Canvas.Top="41" />
-            <Button x:Name="MasterBu" Height="21" Width="110"  Content="Мастера" Panel.ZIndex="1" Canvas.Left="47" Canvas.Top="84"/>
-            <Button x:Name="KlientBu" Height="21" Width="110"  Content="Клиенты" Panel.ZIndex="1" Canvas.Left="47" Canvas.Top="110"/>
-            <Button x:Name="ServiceBu" Height="21" Width="110"  Content="Услуги"  Panel.ZIndex="1" Canvas.Left="47" Canvas.Top="136"/>
-            <Button x:Name="ExitBu" Height="21" Width="110"  Content="Выйти"  Panel.ZIndex="1" Canvas.Left="47" Canvas.Top="197"/>
+            <Button x:Name="MasterBu" Height="21" Width="110"  Content="Мастера" Panel.ZIndex="1" Canvas.Left="47" Canvas.Top="84" Click="MasterBu_Click"/>
+            <Button x:Name="KlientBu" Height="21" Width="110"  Content="Клиенты" Panel.ZIndex="1" Canvas.Left="47" Canvas.Top="110" Click="KlientBu_Click"/>
+            <Button x:Name="ServiceBu" Height="21" Width="110"  Content="Услуги"  Panel.ZIndex="1" Canvas.Left="47" Canvas.Top="136" Click="ServiceBu_Click"/>
+            <Button x:Name="ExitBu" Height="21" Width="110"  Content="Выйти"  Panel.ZIndex="1" Canvas.Left="47" Canvas.Top="197" Click="ExitBu_Click"/>
         </Canvas>
         
 

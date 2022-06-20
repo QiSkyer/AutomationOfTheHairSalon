@@ -18,45 +18,48 @@ using System.Data;
 
 namespace Kurs.Pages
 {
+
     /// <summary>
-    /// Логика взаимодействия для MasterPage.xaml
+    /// Логика взаимодействия для AdminMaster.xaml
     /// </summary>
-    public partial class MasterPage : Page
+    public partial class AdminMaster : Page
     {
+        List<int> Masterid = new List<int>();
+        int sc2;
         private string connectionString;
-        public MasterPage()
+
+        public AdminMaster()
         {
             InitializeComponent();
-            MasterPageLo();
-            MasterLabel.Content = DataStore.MasterFam + " " + DataStore.MasterName + " " + DataStore.MasterOtch;
+            GridLoad();
         }
 
-        private void MasterPageLo()
+
+        private void GridLoad()
         {
             connectionString = ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString;
             using (SqlConnection con = new SqlConnection(connectionString))
             {
-                string CmdString = $"SELECT [idPriem],[Surname],[Name],[MiddleName],[ServiceName],[TimePriem],[DatePriem] FROM [Kurs].[dbo].[ForMasters] WHERE [loginMaster] = '{DataStore.Userlogin}' AND [DatePriem] = '{DateTime.Now.ToString("yyyy-MM-dd")}'";
+                string CmdString = $"SELECT [idMaster],[MasterSurName],[MasterName],[MasterMName] FROM[Kurs].[dbo].[ForReg2]";
 
                 SqlCommand cmd = new SqlCommand(CmdString, con);
                 SqlDataAdapter sda = new SqlDataAdapter(CmdString, connectionString);
-                DataTable dt = new DataTable("Dg1");
+                DataTable dt = new DataTable("Gr1");
                 sda.Fill(dt);
-                Dg1.ItemsSource = dt.DefaultView;
+                Gr1.ItemsSource = dt.DefaultView;
+                con.Open();
+                SqlDataReader reader = cmd.ExecuteReader();
+                int i = 0;
+                while (reader.Read())
+                {
+                    Masterid.Add(i);
+                    i++;
+                }
+                reader.Close();
             }
         }
-      
 
-        private void ExitBu_Click(object sender, RoutedEventArgs e)
-        {
-            NavigationService.GoBack();
-            NavigationService.RemoveBackEntry();
-        }
 
-        private void ResBu_Click(object sender, RoutedEventArgs e)
-        {
-            Dg1.ItemsSource = null;
-            MasterPageLo();
-        }
+
     }
 }

@@ -10,14 +10,14 @@
 
     <Canvas Background="Azure">
         <Image Height="430" Canvas.Left="22" Source="/Kurs;component/interfaceTable2_00001.png" Stretch="Fill" Width="748" Canvas.Top="1"/>
-        <TextBox x:Name="NameBox" Height="23" Canvas.Left="187" TextWrapping="Wrap" Canvas.Top="126" Width="120"/>
-        <Label Content="Имя:" Canvas.Left="97" Canvas.Top="119" Width="52"/>
-        <TextBox x:Name="FamilyBox" Height="23" Canvas.Left="187" TextWrapping="Wrap" Canvas.Top="155" Width="120"/>
-        <Label Content="Фамилия:" Canvas.Left="97" Canvas.Top="151" Width="88"/>
+        <TextBox x:Name="FamilyBox" Height="23" Canvas.Left="187" TextWrapping="Wrap" Canvas.Top="122" Width="120"/>
+        <TextBox x:Name="NameBox" Height="23" Canvas.Left="187" TextWrapping="Wrap" Canvas.Top="153" Width="120"/>
+        <Label Content="Имя:" Canvas.Left="99" Canvas.Top="152" Width="52"/>
+        <Label Content="Фамилия:" Canvas.Left="97" Canvas.Top="118" Width="88"/>
         <TextBox x:Name="OtchestvoBox" Height="23" Canvas.Left="187" TextWrapping="Wrap" Canvas.Top="183" Width="120"/>
         <Label Content="Отчество:" Canvas.Left="97" Canvas.Top="182" Width="88"/>
         <TextBox x:Name="PhoneBox" Height="23" Canvas.Left="187" TextWrapping="Wrap" Canvas.Top="215" Width="120"/>
-        <Label Content="Телефон:" Canvas.Left="97" Canvas.Top="214" Width="88"/>
+        <Label Content="Телефон:" Canvas.Left="99" Canvas.Top="213" Width="88"/>
         <Label Content="Введите свои данные" Canvas.Left="97" Canvas.Top="91"/>
         <Button Content="Далее" Canvas.Left="123" Canvas.Top="267" Width="102" Height="25" Click="Button_Click"/>
         <Label Content="Выберите услугу" Height="25" Canvas.Left="394" Canvas.Top="91" Width="101"/>

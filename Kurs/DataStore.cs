@@ -15,12 +15,14 @@ namespace Kurs
     }
     class Reg1Data
     {
+        public static int Clientid = -1;
         public static string ClientName;
         public static string ClientFamily;
         public static string ClientOtchstvo;
         public static string ClientPhone;
         public static string ServiceId;
         public static string Service;
+        public static string ServiceCost;
     }
     class Reg2Data
     {

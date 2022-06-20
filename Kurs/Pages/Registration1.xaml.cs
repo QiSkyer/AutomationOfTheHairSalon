@@ -25,6 +25,7 @@ namespace Kurs.Pages
     {
         List<string> Serviceid = new List<string>();
         List<string> Service = new List<string>();
+        List<string> ServiceCost = new List<string>();
         private string connectionString;
 
         public Registration1()
@@ -52,8 +53,31 @@ namespace Kurs.Pages
                 {
                     Serviceid.Add(reader[0].ToString());
                     Service.Add(reader[1].ToString());
+                    ServiceCost.Add(reader[3].ToString());
+                } 
+                reader.Close();
+            }
+        }
+
+        //Проверка существующей записи
+        private void Clientid()
+        {
+            using (SqlConnection con = new SqlConnection(connectionString))
+            {
+                string CmdString = $"SELECT [idClient],[Surname],[Name],[MiddleName],[Phone] FROM [Kurs].[dbo].[Clients] Where Surname = '{FamilyBox.Text}' AND Name = '{NameBox.Text}' AND MiddleName= '{OtchestvoBox.Text}' AND Phone = '{PhoneBox.Text}'";
+              
+                SqlCommand cmd = new SqlCommand(CmdString, con);
+                SqlDataAdapter sda = new SqlDataAdapter(CmdString, connectionString);
+
+                con.Open();
+                SqlDataReader reader = cmd.ExecuteReader();
+                while (reader.Read())
+                {
+                    Reg1Data.Clientid = Convert.ToInt32(reader[0]);
+                    return;
                 }
                 reader.Close();
+               // MessageBox.Show(Reg1Data.Clientid.ToString());
             }
         }
 
@@ -73,11 +97,13 @@ namespace Kurs.Pages
                 }
                 else
                 {
+                    Clientid();
                     Reg1Data.ClientName = NameBox.Text;
                     Reg1Data.ClientFamily = FamilyBox.Text;
                     Reg1Data.ClientOtchstvo = OtchestvoBox.Text;
                     Reg1Data.ClientPhone = PhoneBox.Text;
                     Reg1Data.ServiceId = sc2.ToString();
+                    Reg1Data.ServiceCost = ServiceCost[sc2];
                     Reg1Data.Service = Service[sc2];
                     NavigationService.Navigate(new Registration2());
                 }

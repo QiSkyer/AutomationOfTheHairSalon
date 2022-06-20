@@ -12,7 +12,7 @@
 
         <Canvas Background="Azure" >
             <Image  Source="/Kurs;component/interfaceTable_00001.png"  Stretch="Fill" Height="445" Canvas.Top="-33" Width="804"/>
-            <Button x:Name="ResBu" Canvas.Left="46" Canvas.Top="218" Width="71" IsEnabled="False" >Распечатать</Button>
+            <Button x:Name="ResBu" Canvas.Left="46" Canvas.Top="218" Width="71" IsEnabled="False" Click="ResBu_Click" >Распечатать</Button>
             <Button x:Name="ExitBu" Canvas.Left="46" Canvas.Top="253" Width="72" Click="ExitBu_Click">Выход</Button>
             <Image Height="398" Canvas.Left="94" Source="/Kurs;component/Fill_00001_00001.png" Stretch="Fill" Canvas.Top="-21" Width="706"/>
             <TextBlock x:Name="_FIO" Canvas.Left="309" TextWrapping="Wrap" Text="ФИО" Canvas.Top="51" Width="246" TextAlignment="Center"/>

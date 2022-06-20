@@ -34,5 +34,26 @@ namespace Kurs.Pages
              
             
         }
+
+        private void MasterBu_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void KlientBu_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void ServiceBu_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void ExitBu_Click(object sender, RoutedEventArgs e)
+        {
+            NavigationService.GoBack();
+            NavigationService.RemoveBackEntry();
+        }
     }
 }

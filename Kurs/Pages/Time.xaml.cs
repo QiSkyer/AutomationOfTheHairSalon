@@ -49,7 +49,7 @@ namespace Kurs
             connectionString = ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString;
             using (SqlConnection con = new SqlConnection(connectionString))
             {
-                string CmdString = $"SELECT [idRaspisaniya],[idMaster],[TimeBegin],[TimeEnd],[Date] FROM [Kurs].[dbo].[RaspisanieMastera] where idMaster = '{Reg2Data.masterid}'";
+                string CmdString = $"SELECT [idRaspisaniya],[idMaster],[TimeBegin],[TimeEnd] FROM [Kurs].[dbo].[RaspisanieMastera] where idMaster = '{Reg2Data.masterid}'";
                 SqlConnection connection = new SqlConnection(connectionString);
                 SqlCommand command = new SqlCommand(CmdString, connection);
                 connection.Open();
@@ -59,7 +59,7 @@ namespace Kurs
                 endRasp = Convert.ToInt32(reader[3]);
                 reader.Close();
 
-                string CmdString1 = $"SELECT [idMaster],[idService],[TimePriem],[Date],[ServiceLength] FROM [Kurs].[dbo].[ForTimes] Where idmaster = '{Reg2Data.masterid}' AND [Date] = '{Reg2Data.Date}'";
+                string CmdString1 = $"SELECT [idMaster],[idService],[TimePriem],[DatePriem],[ServiceLength] FROM [Kurs].[dbo].[ForTimes] Where idmaster = '{Reg2Data.masterid}' AND [DatePriem] = '{Reg2Data.Date}'";
                 SqlConnection connection1 = new SqlConnection(connectionString);
                 SqlCommand command1 = new SqlCommand(CmdString1, connection);
                 SqlDataReader reader1 = command1.ExecuteReader();
@@ -104,15 +104,16 @@ namespace Kurs
                 Buu.Tag = i;
 
                 //MessageBox.Show(CloseTime.Count.ToString());
-                for (ii=0; ii< CloseTime.Count; ii++)
+                for (ii=0; ii< CloseTime.Count; ++ii)
                 {
-                    if (Rasp == Convert.ToInt32(CloseTime[ii][0]) && RaspMin == Convert.ToInt32(CloseTime[ii][1]))
+                    if ((Rasp == Convert.ToInt32(CloseTime[ii][0]) && RaspMin >= Convert.ToInt32(CloseTime[ii][1])) && (Rasp == Convert.ToInt32(CloseTime[ii][0]) && RaspMin <= Convert.ToInt32(CloseTime[ii][1]) + ServiceLengReg) ) 
                     {
                        
                                 Buu.Background = Brushes.Gray;
+                        bans.Add(i);
                     }
                     else
-                    {
+                    { 
                         Buu.Click += new RoutedEventHandler(Buu_Click);
                     }
 
@@ -158,10 +159,25 @@ namespace Kurs
 
         private void Buu_Click(object sender, EventArgs e)
         {
-           string sr = ((Button)sender).Content.ToString();
-            Reg2Data.Time = sr;
-            Result.Content = sr;
-          
+            bool bo = true;
+           int sr2 = Convert.ToInt32(((Button)sender).Tag);
+            for (int i=0; i < bans.Count; i++)
+            {
+                if ( bans[i] == sr2)
+                {
+                    bo = false;
+                }
+            }
+            if (bo == false)
+            {
+
+            }
+            else
+            {
+                string sr = ((Button)sender).Content.ToString();
+                Reg2Data.Time = sr;
+                Result.Content = sr;
+            }
             
         }
 

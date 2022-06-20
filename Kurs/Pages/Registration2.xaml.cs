@@ -78,6 +78,7 @@ namespace Kurs.Pages
             if (DateTime.Now > Kalendar.SelectedDate)
             {
                 Kalendar.SelectedDate = DateTime.Now;
+                Reg2Data.Date = Kalendar.SelectedDate.ToString();
             }
             else
             {
